@@ -37,50 +37,58 @@ LinkedList.prototype.addToTail = function (newData) {
 };
 
 var tmpLL = new LinkedList("one");
+
 // new up a linked list
 console.log(JSON.stringify(tmpLL, null, 4));
-// add an element to the linked list, aka PUSH
+// add an element to the linked list
+console.log("^ new list with 1 element-------------------------------");
 tmpLL.push("two");
 console.log(JSON.stringify(tmpLL, null, 4));
 // add another element to the LL, push again
+console.log("^ after pushing \"two\" ------------------------------");
 tmpLL.push("three");
 console.log(JSON.stringify(tmpLL, null, 4));
 // Remove the head of the list aka POP
+console.log("^ after pushing \"three\" ------------------------------");
 console.log("Popped off head: ", JSON.stringify(tmpLL.pop(), null, 4));
+console.log("^ pop returns the removed data *************************");
 console.log(JSON.stringify(tmpLL, null, 4));
-
+console.log("^ the popped element isn't in the list anymore ---------");
 // add something to the tail of the list
 tmpLL.addToTail("pizza");
 console.log(JSON.stringify(tmpLL, null, 4));
+console.log("\"pizza\" is now on the tail of the list ---------------");
 
 function Stack(firstVal) {
   var that = this;
   if(!firstVal) { throw "Stack requires an initial value."; }
-  this.innerLL = new LinkedList(firstVal, null);
+  this.innerLL = new LinkedList(firstVal);
   return {
     push: function (newData) {
       that.innerLL.push(newData);
     },
     pop: function () {
       var thing = that.innerLL.pop();
-      if(!thing) {return null;}
+      if(!thing) { return null; }
       return thing;
     }
   };
 }
 // make a stack, push four things onto it, and pop them off
-var myStack = new Stack("one");
+const myStack = new Stack("one");
 myStack.push("two");
 myStack.push("three");
 myStack.push("four");
-console.log(myStack.pop());
-console.log(myStack.pop());
-console.log(myStack.pop());
-console.log(myStack.pop());
-console.log(myStack.pop());
+console.log("= four? ", myStack.pop());
+console.log("= three? ", myStack.pop());
+console.log("= two? ", myStack.pop());
+console.log("= one? ", myStack.pop());
+console.log("= null? ", myStack.pop());
+
+// Sir Tony's null pointer (in his words, "a billion dollar mistake") lives on.
 
 function Queue(firstVal) {
-  var that = this;
+  const that = this;
   if(!firstVal) { throw "Queue requires an initial value."; }
   this.innerLL = new LinkedList(firstVal, null);
   return {
@@ -89,18 +97,18 @@ function Queue(firstVal) {
     },
     dequeue: function () {
       var thing = that.innerLL.pop();
-      if(!thing) {return null;}
+      if(!thing) { return null; }
       return thing;
     }
   };
 }
 // make a queue, put some things onto it, pop them off
-var myQueue = new Queue("one 5");
-myQueue.enqueue("two 10");
-myQueue.enqueue("three 239");
-myQueue.enqueue("four 29");
-console.log(myQueue.dequeue());
-console.log(myQueue.dequeue());
-console.log(myQueue.dequeue());
-console.log(myQueue.dequeue());
-console.log(myQueue.dequeue());
+var myQueue = new Queue("one");
+myQueue.enqueue("two");
+myQueue.enqueue("three");
+myQueue.enqueue("four");
+console.log("= one? ", myQueue.dequeue());
+console.log("= two? ", myQueue.dequeue());
+console.log("= three? ", myQueue.dequeue());
+console.log("= four? ", myQueue.dequeue());
+console.log("= null? ", myQueue.dequeue());
